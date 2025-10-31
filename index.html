@@ -5,50 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vintage Letter</title>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
     body {
-        background-color: #1c1c1c; /* black envelope background */
+        background-color: #1c1c1c; /* page background */
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
-        font-family: Georgia, serif;
+        font-family: 'Great Vibes', cursive;
         padding: 20px;
     }
 
-    /* Envelope container */
+    /* Envelope wrapper */
     .envelope {
-        background-color: #1c1c1c;
-        padding: 20px;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 90%;
         max-width: 700px;
-        overflow: hidden;
+        perspective: 1000px;
+        position: relative;
     }
 
-    /* Letter with vintage paper and slide-in animation */
+    /* Envelope base */
+    .envelope-base {
+        background-color: #000; /* black envelope */
+        border-radius: 15px;
+        padding-top: 50px; /* space for flap */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Envelope flap */
+    .flap {
+        width: 100%;
+        height: 50px;
+        background-color: #000; /* black flap */
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        transform: rotateX(-180deg);
+        transform-origin: top;
+        animation: flapOpen 1s ease forwards;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    @keyframes flapOpen {
+        from { transform: rotateX(-180deg); }
+        to { transform: rotateX(0deg); }
+    }
+
+    /* Letter inside envelope */
     .letter {
-        background-color: #f4ecd8; /* vintage paper color */
-        padding: 30px;
+        background-color: #f4ecd8; /* vintage paper */
+        padding: 40px;
         border-radius: 10px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         color: #2c1608;
-        line-height: 1.7;
+        line-height: 1.8;
+        font-size: 1.2rem;
         max-width: 100%;
         overflow-wrap: break-word;
-        background-image: repeating-linear-gradient(
-            45deg,
-            rgba(0,0,0,0.02),
-            rgba(0,0,0,0.02) 1px,
-            transparent 1px,
-            transparent 4px
-        ); /* subtle paper texture */
+        background-image:
+            linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.01) 1px, transparent 1px);
+        background-size: 4px 4px; /* subtle paper texture */
         animation: slideIn 1.2s ease-out forwards;
         opacity: 0;
-        transform: translateY(-30px);
+        transform: translateY(-50px);
+        position: relative;
+        z-index: 1;
     }
 
     @keyframes slideIn {
@@ -59,52 +87,56 @@
     }
 
     .letter p {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
     }
 
     .signature {
-        margin-top: 25px;
+        margin-top: 30px;
         text-align: right;
         font-style: italic;
+        font-size: 1.3rem;
     }
 </style>
 </head>
 <body>
     <div class="envelope">
-        <div class="letter">
-            <p>Hi Coach, smile ka na! 😄</p>
+        <div class="envelope-base">
+            <div class="flap"></div> <!-- black flap opening -->
+            <div class="letter">
+                <p>Hi Coach, smile ka na! 😄</p>
 
-            <p>Hi… I just wanted to say this because I saw your repost, and I can’t help but feel something. I know maybe you don’t expect me to say anything, but I care about you — I really do. That’s why I wanted to tell you that I’m so proud of you. I know things haven’t been easy, and I might not know the full story or everything that’s going on, but I can still see how strong you are through it all.</p>
+                <p>Hi… I just wanted to say this because I saw your repost, and I can’t help but feel something. I know maybe you don’t expect me to say anything, but I care about you — I really do. That’s why I wanted to tell you that I’m so proud of you. I know things haven’t been easy, and I might not know the full story or everything that’s going on, but I can still see how strong you are through it all.</p>
 
-            <p>Sometimes, you don’t even realize how much strength it takes just to get up, smile, and face another day when everything feels heavy. But you do it anyway — and that’s something to be proud of. Even if the world doesn’t notice, I do. I see your effort. I see your fight. I see how you keep going, even when you’re tired.</p>
+                <p>Sometimes, you don’t even realize how much strength it takes just to get up, smile, and face another day when everything feels heavy. But you do it anyway — and that’s something to be proud of. Even if the world doesn’t notice, I do. I see your effort. I see your fight. I see how you keep going, even when you’re tired.</p>
 
-            <p>I hope that one of these days, God finally heals you from all the pain, the confusion, and the burdens that keep weighing you down. Healing isn’t fast or easy, I know, but you deserve peace, clarity, and happiness — the kind that stays and doesn’t disappear overnight. I hope you find that soon.</p>
+                <p>I hope that one of these days, God finally heals you from all the pain, the confusion, and the burdens that keep weighing you down. Healing isn’t fast or easy, I know, but you deserve peace, clarity, and happiness — the kind that stays and doesn’t disappear overnight. I hope you find that soon.</p>
 
-            <p>You’re amazing, you know that? You might not see it all the time, but you are. You’re kind, smart, capable, and beautiful in every way — not just outside, but deep inside. You have this warmth that people can feel when they talk to you or when they see you just trying your best. That alone is something so special.</p>
+                <p>You’re amazing, you know that? You might not see it all the time, but you are. You’re kind, smart, capable, and beautiful in every way — not just outside, but deep inside. You have this warmth that people can feel when they talk to you or when they see you just trying your best. That alone is something so special.</p>
 
-            <p>Please don’t think you’re less just because you’re struggling. Problems don’t make you weak; they show that you’re human. Everyone breaks sometimes, but what matters is that you’re still here, still trying, still fighting. That’s power. That’s strength.</p>
+                <p>Please don’t think you’re less just because you’re struggling. Problems don’t make you weak; they show that you’re human. Everyone breaks sometimes, but what matters is that you’re still here, still trying, still fighting. That’s power. That’s strength.</p>
 
-            <p>I wish I could take away every single thing that hurts you — all the weight, all the sadness, all the self-doubt. But since I can’t, I’ll just keep reminding you that you’re not alone. Even when it feels like no one gets you, or when you think no one cares, I’m here. I see you. And I’m proud of you.</p>
+                <p>I wish I could take away every single thing that hurts you — all the weight, all the sadness, all the self-doubt. But since I can’t, I’ll just keep reminding you that you’re not alone. Even when it feels like no one gets you, or when you think no one cares, I’m here. I see you. And I’m proud of you.</p>
 
-            <p>You’re doing better than you think, and I mean that. Healing isn’t always about being happy every day — sometimes, it’s just about not giving up, even when you want to. And that’s something you’ve been doing quietly, and that’s worth acknowledging.</p>
+                <p>You’re doing better than you think, and I mean that. Healing isn’t always about being happy every day — sometimes, it’s just about not giving up, even when you want to. And that’s something you’ve been doing quietly, and that’s worth acknowledging.</p>
 
-            <p>I hope you start seeing yourself the way others do — the way I do. Someone strong, brave, and full of potential. You’ve got this light that you might not even notice, but it shines through everything you do. You touch people without even realizing it.</p>
+                <p>I hope you start seeing yourself the way others do — the way I do. Someone strong, brave, and full of potential. You’ve got this light that you might not even notice, but it shines through everything you do. You touch people without even realizing it.</p>
 
-            <p>Maybe right now things feel messy, maybe life feels unfair, but I promise you — this won’t last forever. God has a reason for everything you’re going through. He’s not punishing you; He’s shaping you, preparing you for something greater, something beautiful that’s waiting for you ahead.</p>
+                <p>Maybe right now things feel messy, maybe life feels unfair, but I promise you — this won’t last forever. God has a reason for everything you’re going through. He’s not punishing you; He’s shaping you, preparing you for something greater, something beautiful that’s waiting for you ahead.</p>
 
-            <p>I know it’s hard to trust the process when everything hurts, but trust me, you’ll look back someday and realize that even the pain had a purpose. The nights you cried, the moments you almost gave up — they’ll all make sense eventually. You just have to keep holding on a little longer.</p>
+                <p>I know it’s hard to trust the process when everything hurts, but trust me, you’ll look back someday and realize that even the pain had a purpose. The nights you cried, the moments you almost gave up — they’ll all make sense eventually. You just have to keep holding on a little longer.</p>
 
-            <p>And while you do, please don’t forget to breathe, to rest, to take care of yourself. Eat when you can. Sleep when you need to. Talk to someone when it gets too heavy. Don’t carry everything alone — you’re not meant to.</p>
+                <p>And while you do, please don’t forget to breathe, to rest, to take care of yourself. Eat when you can. Sleep when you need to. Talk to someone when it gets too heavy. Don’t carry everything alone — you’re not meant to.</p>
 
-            <p>You’re doing your best, and that’s enough. You don’t need to prove anything to anyone. You don’t need to be perfect; you just need to be you. That’s already more than enough.</p>
+                <p>You’re doing your best, and that’s enough. You don’t need to prove anything to anyone. You don’t need to be perfect; you just need to be you. That’s already more than enough.</p>
 
-            <p>So please, whatever you’re facing, don’t give up on yourself. You are meant for so much more than the pain you feel right now. You’ll heal, you’ll grow, and you’ll find peace again — maybe even sooner than you think.</p>
+                <p>So please, whatever you’re facing, don’t give up on yourself. You are meant for so much more than the pain you feel right now. You’ll heal, you’ll grow, and you’ll find peace again — maybe even sooner than you think.</p>
 
-            <p>You are amazing, you are capable, and you are loved — even when it doesn’t feel like it. Don’t let the heaviness of today make you forget how beautiful your heart is and how much you still deserve to be happy.</p>
+                <p>You are amazing, you are capable, and you are loved — even when it doesn’t feel like it. Don’t let the heaviness of today make you forget how beautiful your heart is and how much you still deserve to be happy.</p>
 
-            <p>And lastly, I just want to say that I believe in you. Always have, always will. Keep going, okay? You’ve got this. You always did.</p>
+                <p>And lastly, I just want to say that I believe in you. Always have, always will. Keep going, okay? You’ve got this. You always did.</p>
 
-            <div class="signature">— From Someone Who Cares</div>
+                <div class="signature">— From Someone Who Cares</div>
+            </div>
         </div>
     </div>
 </body>
