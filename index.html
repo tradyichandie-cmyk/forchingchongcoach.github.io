@@ -3,105 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vintage Letter</title>
+<title>Click-to-Open Vintage Letter</title>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
     body {
-        background-color: #1c1c1c; /* page background */
+        background-color: #1c1c1c;
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         margin: 0;
         font-family: 'Great Vibes', cursive;
-        padding: 20px;
     }
 
-    /* Envelope wrapper */
-    .envelope {
+    .envelope-container {
         width: 90%;
         max-width: 700px;
         perspective: 1000px;
-        position: relative;
+        cursor: pointer;
     }
 
-    /* Envelope base */
-    .envelope-base {
-        background-color: #000; /* black envelope */
+    .envelope {
+        width: 100%;
+        background-color: #000;
         border-radius: 15px;
-        padding-top: 50px; /* space for flap */
+        position: relative;
         box-shadow: 0 10px 25px rgba(0,0,0,0.7);
         overflow: hidden;
-        position: relative;
+        transition: all 0.8s ease;
     }
 
-    /* Envelope flap */
     .flap {
         width: 100%;
-        height: 50px;
-        background-color: #000; /* black flap */
+        height: 60px;
+        background-color: #000;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
-        transform: rotateX(-180deg);
         transform-origin: top;
-        animation: flapOpen 1s ease forwards;
+        transition: transform 1s ease;
         position: absolute;
         top: 0;
         left: 0;
         z-index: 2;
     }
 
-    @keyframes flapOpen {
-        from { transform: rotateX(-180deg); }
-        to { transform: rotateX(0deg); }
-    }
-
-    /* Letter inside envelope */
     .letter {
-        background-color: #f4ecd8; /* vintage paper */
-        padding: 40px;
+        background-color: #f4ecd8;
+        padding: 50px 40px;
         border-radius: 10px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         color: #2c1608;
-        line-height: 1.8;
-        font-size: 1.2rem;
+        line-height: 1.9;
+        font-size: 1.25rem;
         max-width: 100%;
         overflow-wrap: break-word;
         background-image:
             linear-gradient(rgba(0,0,0,0.01) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,0,0,0.01) 1px, transparent 1px);
-        background-size: 4px 4px; /* subtle paper texture */
-        animation: slideIn 1.2s ease-out forwards;
+        background-size: 4px 4px;
         opacity: 0;
         transform: translateY(-50px);
-        position: relative;
+        transition: all 1s ease;
         z-index: 1;
+        position: relative;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
     }
 
-    @keyframes slideIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .envelope.open .flap {
+        transform: rotateX(-180deg);
+    }
+
+    .envelope.open .letter {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .letter p {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     .signature {
-        margin-top: 30px;
+        margin-top: 35px;
         text-align: right;
         font-style: italic;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 </style>
 </head>
 <body>
-    <div class="envelope">
-        <div class="envelope-base">
-            <div class="flap"></div> <!-- black flap opening -->
+    <div class="envelope-container" onclick="openEnvelope()">
+        <div class="envelope" id="envelope">
+            <div class="flap"></div>
             <div class="letter">
                 <p>Hi Coach, smile ka na! 😄</p>
 
@@ -139,5 +131,11 @@
             </div>
         </div>
     </div>
+
+<script>
+    function openEnvelope() {
+        document.getElementById('envelope').classList.toggle('open');
+    }
+</script>
 </body>
 </html>
