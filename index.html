@@ -16,6 +16,7 @@
         padding: 20px;
     }
 
+    /* Envelope container */
     .envelope {
         background-color: #1c1c1c;
         padding: 20px;
@@ -25,8 +26,10 @@
         align-items: center;
         width: 90%;
         max-width: 700px;
+        overflow: hidden;
     }
 
+    /* Letter with vintage paper and slide-in animation */
     .letter {
         background-color: #f4ecd8; /* vintage paper color */
         padding: 30px;
@@ -36,6 +39,23 @@
         line-height: 1.7;
         max-width: 100%;
         overflow-wrap: break-word;
+        background-image: repeating-linear-gradient(
+            45deg,
+            rgba(0,0,0,0.02),
+            rgba(0,0,0,0.02) 1px,
+            transparent 1px,
+            transparent 4px
+        ); /* subtle paper texture */
+        animation: slideIn 1.2s ease-out forwards;
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    @keyframes slideIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .letter p {
@@ -52,6 +72,8 @@
 <body>
     <div class="envelope">
         <div class="letter">
+            <p>Hi Coach, smile ka na! 😄</p>
+
             <p>Hi… I just wanted to say this because I saw your repost, and I can’t help but feel something. I know maybe you don’t expect me to say anything, but I care about you — I really do. That’s why I wanted to tell you that I’m so proud of you. I know things haven’t been easy, and I might not know the full story or everything that’s going on, but I can still see how strong you are through it all.</p>
 
             <p>Sometimes, you don’t even realize how much strength it takes just to get up, smile, and face another day when everything feels heavy. But you do it anyway — and that’s something to be proud of. Even if the world doesn’t notice, I do. I see your effort. I see your fight. I see how you keep going, even when you’re tired.</p>
